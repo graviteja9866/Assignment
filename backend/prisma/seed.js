@@ -74,8 +74,14 @@ async function main() {
   const dueIn21Days = new Date();
   dueIn21Days.setDate(dueIn21Days.getDate() + 21);
 
+  const dueIn3Days = new Date();
+  dueIn3Days.setDate(dueIn3Days.getDate() + 3);
+
   const completedAt = new Date();
   completedAt.setDate(completedAt.getDate() - 2);
+
+  const completedLastWeek = new Date();
+  completedLastWeek.setDate(completedLastWeek.getDate() - 7);
 
   const seedTasks = [
     {
@@ -179,6 +185,108 @@ async function main() {
       createdById: admin.id,
       dueDate: dueIn7Days,
       completedAt,
+    },
+    {
+      id: '00000000-0000-0000-0000-000000000110',
+      title: 'Implement dark mode toggle',
+      description: 'Add theme switcher with persisted user preference',
+      priority: 'MEDIUM',
+      status: 'TODO',
+      assigneeId: member.id,
+      createdById: admin.id,
+      dueDate: dueIn21Days,
+    },
+    {
+      id: '00000000-0000-0000-0000-000000000111',
+      title: 'Set up CI pipeline',
+      description: 'Automate lint, test, and Docker build on every push',
+      priority: 'HIGH',
+      status: 'IN_PROGRESS',
+      assigneeId: manager.id,
+      createdById: admin.id,
+      dueDate: dueIn7Days,
+    },
+    {
+      id: '00000000-0000-0000-0000-000000000112',
+      title: 'Review accessibility checklist',
+      description: 'Verify keyboard navigation and screen reader labels',
+      priority: 'MEDIUM',
+      status: 'IN_REVIEW',
+      assigneeId: member.id,
+      createdById: admin.id,
+      dueDate: dueIn3Days,
+    },
+    {
+      id: '00000000-0000-0000-0000-000000000113',
+      title: 'Configure error monitoring',
+      description: 'Wire up alerts for API 5xx errors and failed logins',
+      priority: 'HIGH',
+      status: 'DONE',
+      assigneeId: admin.id,
+      createdById: manager.id,
+      dueDate: futureDate,
+      completedAt: completedLastWeek,
+    },
+    {
+      id: '00000000-0000-0000-0000-000000000114',
+      title: 'Resolve database migration conflict',
+      description: 'Waiting on DBA approval for schema change in production',
+      priority: 'HIGH',
+      status: 'BLOCKED',
+      assigneeId: manager.id,
+      createdById: admin.id,
+      dueDate: dueIn3Days,
+    },
+    {
+      id: '00000000-0000-0000-0000-000000000115',
+      title: 'Build task filter UI',
+      description: 'Add assignee and project filters to the task board',
+      priority: 'MEDIUM',
+      status: 'TODO',
+      assigneeId: member.id,
+      createdById: manager.id,
+      dueDate: futureDate,
+    },
+    {
+      id: '00000000-0000-0000-0000-000000000116',
+      title: 'Integrate email notifications',
+      description: 'Send alerts when tasks are assigned or status changes',
+      priority: 'HIGH',
+      status: 'IN_PROGRESS',
+      assigneeId: admin.id,
+      createdById: manager.id,
+      dueDate: dueIn21Days,
+    },
+    {
+      id: '00000000-0000-0000-0000-000000000117',
+      title: 'Security penetration test',
+      description: 'Run OWASP scan against auth and user management endpoints',
+      priority: 'HIGH',
+      status: 'IN_REVIEW',
+      assigneeId: manager.id,
+      createdById: admin.id,
+      dueDate: dueIn7Days,
+    },
+    {
+      id: '00000000-0000-0000-0000-000000000118',
+      title: 'Archive completed sprint',
+      description: 'Move finished tasks to sprint archive and update metrics',
+      priority: 'LOW',
+      status: 'DONE',
+      assigneeId: member.id,
+      createdById: manager.id,
+      dueDate: dueIn7Days,
+      completedAt,
+    },
+    {
+      id: '00000000-0000-0000-0000-000000000119',
+      title: 'Update dependency versions',
+      description: 'Bump React, Vite, and Prisma to latest stable releases',
+      priority: 'LOW',
+      status: 'TODO',
+      assigneeId: admin.id,
+      createdById: admin.id,
+      dueDate: dueIn21Days,
     },
   ];
 
