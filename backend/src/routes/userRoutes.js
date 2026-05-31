@@ -1,14 +1,14 @@
 const express = require('express');
 const userService = require('../services/userService');
 const { authenticate } = require('../middleware/authenticate');
-const { requireAdmin } = require('../middleware/rbac');
+const { requireAdmin, requireManagerOrAdmin } = require('../middleware/rbac');
 const { validate, createUserSchema, updateUserSchema, userIdParamSchema } = require('../validators/schemas');
 
 const router = express.Router();
 
-router.use(authenticate, requireAdmin);
+router.use(authenticate);
 
-router.get('/', async (req, res, next) => {
+router.get('/', requireManagerOrAdmin, async (req, res, next) => {
   try {
     const users = await userService.listUsers(req.user.organizationId);
     res.json({ data: users });
@@ -16,6 +16,8 @@ router.get('/', async (req, res, next) => {
     next(err);
   }
 });
+
+router.use(requireAdmin);
 
 router.post('/', validate(createUserSchema), async (req, res, next) => {
   try {
